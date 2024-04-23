@@ -15,6 +15,16 @@ export default function Home() {
             place in a world where people often prove more wicked than beasts.
           </p>
         </div>
+
+        <div className='flex space-x-3'>
+          <button className='flex cursor-pointer items-center gap-x-2 rounded bg-white px-5 py-1.5 text-sm font-semibold text-black transition hover:opacity-75 md:px-8 md:py-2.5 md:text-xl'>
+            Play
+          </button>
+
+          <button className='flex cursor-pointer items-center gap-x-2 rounded bg-gray-500 px-5 py-1.5 text-sm font-semibold text-black transition hover:opacity-75 md:px-8 md:py-2.5 md:text-xl'>
+            More Info
+          </button>
+        </div>
       </main>
     </div>
   );
