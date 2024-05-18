@@ -22,7 +22,7 @@ export default function Home() {
 
         <div className='flex space-x-3'>
           <button className='flex cursor-pointer items-center gap-x-2 rounded bg-white px-5 py-1.5 text-sm font-semibold text-black transition hover:opacity-75 md:px-8 md:py-2.5 md:text-xl'>
-            <PlayIcon className='h6' />
+            <PlayIcon className='h-6' />
             Play
           </button>
 
@@ -30,6 +30,27 @@ export default function Home() {
             <InformationCircleIcon className='h6' />
             More Info
           </button>
+        </div>
+
+        <div className='flex-col space-y-4'>
+          <div className='flex space-x-4 overflow-x-scroll'>
+            {[1, 2, 3, 4, 5].map((index) => (
+              <div
+                key={index}
+                className='group relative h-28 min-w-[200]
+                transition duration-200 ease-in hover:z-50 hover:scale-110
+              '
+              >
+                <Image
+                  src={`/item_${index}.png`}
+                  alt='image'
+                  width={200}
+                  height={300}
+                  className='rounded'
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </main>
     </div>
