@@ -12,7 +12,8 @@
   "dependencies": {
     "next": "13.5.7-canary.37",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.5",
