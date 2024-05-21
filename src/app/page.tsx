@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Header from './components/Header';
 import { InformationCircleIcon, PlayIcon } from '@heroicons/react/16/solid';
+import { MovieRow } from './components/MovieRow';
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
 
         <div className='flex space-x-3'>
           <button className='flex cursor-pointer items-center gap-x-2 rounded bg-white px-5 py-1.5 text-sm font-semibold text-black transition hover:opacity-75 md:px-8 md:py-2.5 md:text-xl'>
-            <PlayIcon className='h6' />
+            <PlayIcon className='h-6' />
             Play
           </button>
 
@@ -31,6 +31,10 @@ export default function Home() {
             More Info
           </button>
         </div>
+
+        <MovieRow sectionTitle='Trending Now' />
+        <MovieRow sectionTitle='Top Rated' />
+        <MovieRow sectionTitle='Action Movies' />
       </main>
     </div>
   );
