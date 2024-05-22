@@ -46,6 +46,14 @@ export default function Login() {
               />
             </div>
           </div>
+          <div className='flex flex-col-reverse space-y-2 pt-2 sm:flex-row sm:space-x-2 sm:space-y-0'>
+            <button
+              type='submit'
+              className='flex w-full items-center  justify-center rounded-lg bg-red-500 px-4 py-2 text-sm font-semibold text-white hover:bg-red-600 sm:w-auto sm:px-8'
+            >
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </div>
