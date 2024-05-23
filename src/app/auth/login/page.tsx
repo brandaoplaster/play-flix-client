@@ -1,3 +1,5 @@
+import { InputField } from '@/app/components/InputField';
+
 export default function Login() {
   return (
     <form className='flex w-full max-w-md flex-col space-y-4 rounded bg-[#141414] bg-opacity-90 px-4 py-8 shadow-lg'>
@@ -11,35 +13,19 @@ export default function Login() {
         </p>
       </div>
       <div className='mt-8 flex flex-col space-y-4'>
-        <div className='flex flex-col space-y-1'>
-          <label
-            htmlFor='email'
-            className='text-sm font-semibold text-gray-500'
-          >
-            email
-          </label>
-          <input
-            type='text'
-            name='email'
-            placeholder='Enter your email'
-            className='rounded-lg border-gray-600 bg-gray-700 px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-red-500'
-          />
-        </div>
+        <InputField
+          id='email'
+          type='email'
+          label='Email'
+          placeholder='Enter your email'
+        />
 
-        <div className='flex flex-col space-y-1'>
-          <label
-            htmlFor='password'
-            className='text-sm font-semibold text-gray-500'
-          >
-            password
-          </label>
-          <input
-            type='password'
-            name='password'
-            placeholder='Password'
-            className='rounded-lg border-gray-600 bg-gray-700 px-4 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-red-500'
-          />
-        </div>
+        <InputField
+          id='password'
+          type='password'
+          label='Password'
+          placeholder='Enter your password'
+        />
       </div>
       <div className='flex flex-col-reverse space-y-2 pt-2 sm:flex-row sm:space-x-2 sm:space-y-0'>
         <button
