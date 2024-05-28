@@ -1,41 +1,35 @@
+import { Banner } from '@/app/components/Banner';
+import { MovieRow } from '@/app/components/MovieRow';
+import { getFeaturedMovies, getMoviesByGenre } from './services/MovieService';
 import Header from './components/Header';
-import { InformationCircleIcon, PlayIcon } from '@heroicons/react/16/solid';
-import { MovieRow } from './components/MovieRow';
 
-export default function Home() {
+async function Home() {
+  const featuredMovie = await getFeaturedMovies('106');
+
+  const genres = ['Drama', 'Action', 'Comedy', 'Animation'];
+
+  const movies = await Promise.all(
+    genres.map(async (genre) => {
+      const movies = await getMoviesByGenre(genre, { _limit: 8 });
+      return { sectionTitle: genre, movies };
+    })
+  );
+
   return (
-    <div className='relative h-screen overflow-hidden bg-black bg-gradient-to-b lg:h-[140vh]'>
+    <div className='relative bg-gradient-to-b pb-8'>
       <Header />
-
-      <main className='relative pb-24 pl-4 lg:pl-16'>
-        <div className='flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65hv] lg:justify-end lg:pb-12'>
-          <div className='absolute left-0 top-0 -z-10 flex h-[95vh] w-screen flex-col'></div>
-
-          <h1 className='text-2xl font-bold md:text-4xl lg:text-7xl'>
-            The Witch
-          </h1>
-          <p className='text-shadow-md max-w-xs text-xs md:max-w-lg md:text-lg lg:max-w-2xl'>
-            Geralt of Rivia, a solitary monster hunter, struggles to find his
-            place in a world where people often prove more wicked than beasts.
-          </p>
-        </div>
-
-        <div className='flex space-x-3'>
-          <button className='flex cursor-pointer items-center gap-x-2 rounded bg-white px-5 py-1.5 text-sm font-semibold text-black transition hover:opacity-75 md:px-8 md:py-2.5 md:text-xl'>
-            <PlayIcon className='h-6' />
-            Play
-          </button>
-
-          <button className='flex cursor-pointer items-center gap-x-2 rounded bg-gray-500 px-5 py-1.5 text-sm font-semibold text-black transition hover:opacity-75 md:px-8 md:py-2.5 md:text-xl'>
-            <InformationCircleIcon className='h6' />
-            More Info
-          </button>
-        </div>
-
-        <MovieRow sectionTitle='Trending Now' />
-        <MovieRow sectionTitle='Top Rated' />
-        <MovieRow sectionTitle='Action Movies' />
+      <main className='relative overflow-y-scroll p-8 pb-20 scrollbar-hide lg:pl-16 '>
+        <Banner movie={featuredMovie} />
+        {movies.map((movie) => (
+          <MovieRow
+            key={movie.sectionTitle}
+            sectionTitle={movie.sectionTitle}
+            movies={movie.movies}
+          />
+        ))}
       </main>
     </div>
   );
 }
+
+export default Home;
