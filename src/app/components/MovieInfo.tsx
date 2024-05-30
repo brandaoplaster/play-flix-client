@@ -8,11 +8,13 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/24/outline';
 import { Genre } from '../types/Genre';
+import { MovieRating } from './MovieRating';
 
 type Props = {
   id: string;
   title: string;
   genres: Genre[];
+  rating: string;
   bannerFileURL: string;
 };
 
@@ -20,6 +22,7 @@ export const MovieCardInfo: React.FC<Props> = ({
   id,
   title,
   genres,
+  rating,
   bannerFileURL,
 }) => {
   return (
@@ -57,6 +60,7 @@ export const MovieCardInfo: React.FC<Props> = ({
           </div>
           <div className='flex flex-row items-center gap-2'>
             <UserGroupIcon className='w-4' />
+            <MovieRating rating={rating} />
           </div>
         </div>
         <div className='mt-4 flex flex-row items-center gap-2 text-[8px] text-white lg:text-sm'>
