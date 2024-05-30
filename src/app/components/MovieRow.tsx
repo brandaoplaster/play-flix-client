@@ -1,28 +1,19 @@
 import Image from 'next/image';
-import { Movies } from '../types/Movie';
+import { Movie, Movies } from '../types/Movie';
 
 type MovieRowProps = {
   sectionTitle: string;
   movies: Movies;
 };
 
-type MovieCardProps = {
-  index: number;
-};
-
-export const MovieCard = ({ index }: MovieCardProps) => (
-  <div
-    className='group relative h-28 min-w-[200px] transform bg-gradient-to-t from-transparent
-                to-black transition duration-200 ease-in hover:z-50 hover:scale-110
-                md:h-40 md:min-w-[300px] lg:h-52 lg:min-w-[400px]
-              '
-  >
+export const MovieCard = ({ movie }: { movie: Movie }) => (
+  <div className='group relative min-h-[12vh] rounded bg-zinc-900 md:min-h-[12vw]'>
     <Image
-      src={`/item_${index}.png`}
-      alt='image'
+      src={movie.bannerFileURL}
+      alt={movie.title}
       width={600}
       height={400}
-      className='rounded'
+      className='rounded-md object-cover object-top transition'
     />
   </div>
 );
@@ -35,9 +26,9 @@ export function MovieRow({ sectionTitle, movies }: MovieRowProps) {
           {sectionTitle}
         </h2>
       </div>
-      <div className='-ml-8 flex space-x-4 overflow-x-scroll p-6 scrollbar-hide'>
+      <div className='grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8'>
         {movies.map((movie, index) => (
-          <MovieCard key={movie.id} index={index} />
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>
