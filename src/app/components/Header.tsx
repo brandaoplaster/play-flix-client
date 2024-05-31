@@ -1,12 +1,30 @@
 'use client';
-import React, { useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { UserProfile } from './UserProfile';
 import { Logo } from './Logo';
 import { NavLinks } from './NavLinks';
 import { useScroll } from '../hooks/useScroll';
+import { SearchForm } from './SearchForm';
 
 export default function Header() {
   const isScrolled = useScroll();
+
+  const router = useRouter();
+  const params = useSearchParams();
+  const initialSearchTerm = params.get('title') || '';
+  const [searchTerm, setSearchTerm] = useState<string>(initialSearchTerm);
+
+  function handleSearch(e: FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    const newParams = new URLSearchParams(params.toString());
+    newParams.set('title', searchTerm);
+    router.push(`/search?${newParams.toString()}`);
+  }
+
+  function handleSearchTermChange(e: ChangeEvent<HTMLInputElement>): void {
+    setSearchTerm(e.target.value);
+  }
 
   return (
     <header
@@ -19,6 +37,12 @@ export default function Header() {
 
         <NavLinks />
       </div>
+
+      <SearchForm
+        searchTerm={searchTerm}
+        onSearch={handleSearch}
+        onSearchTermChange={handleSearchTermChange}
+      />
 
       <UserProfile />
     </header>
